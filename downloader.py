@@ -4,10 +4,10 @@
 # automatically install it in a user specified dir.
 # Created by Team Golden Retrievers.
 
-import click
-import sys
+import subprocess
+from configure_gpu import configure_gpu
 
-def run()
+def download():
     # This is the main method for this script.
     # It will prompt the user to set the dir
     # that they want python to install the 
@@ -15,7 +15,16 @@ def run()
     # and install it in that directory.
 
     print("Beginning download of YOLO tool.")
+    subprocess.check_output(['git','clone','https://github.com/pjreddie/darknet'])
+    subprocess.check_output(['mv', 'darknet', 'yolo'])
+    install()
 
+def install():
+    # This function will run the makefile on 
+    # the newly downloaded yolo tool.
+    configure_gpu()
+    print("Running make command on yolo tool.")
+    subprocess.check_output(['make'])
 
 if __name__ = '__main__':
-    run()
+    download()
