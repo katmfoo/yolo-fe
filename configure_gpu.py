@@ -1,6 +1,12 @@
+import os
+
 def configure_gpu():
     print('Now configuring YOLO to utilize GPU...')
-    with open("Makefile", "rt") as fin:
-        with open("Makefile", "wt") as fout:
+    with open("yolo/Makefile", "rt") as fin:
+        with open("yolo/Makefile_new", "wt") as fout:
             for line in fin:
-                fout.write(line.replace('GPU=0', 'GPU=1'))
+                new_line = line.replace('GPU=0', 'GPU=1')
+                new_line = new_line.replace('/usr/local/cuda/', '/usr/local/cuda-9.0/')
+                fout.write(new_line)
+    os.remove('yolo/Makefile')
+    os.rename('yolo/Makefile_new', 'yolo/Makefile')
