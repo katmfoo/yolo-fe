@@ -1,4 +1,5 @@
 import click
+from downloader import download
 
 @click.group()
 def cli():
@@ -9,5 +10,6 @@ def setup():
     '''Automatically downloads and sets up YOLO in the current directory'''
 
     # Run script to automatically download and setup YOLO
+    download()
 
     print('YOLO has been setup successfully')
