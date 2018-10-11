@@ -7,7 +7,7 @@ def cli():
 
 @cli.command()
 def setup():
-    '''Automatically downloads and sets up YOLO in the current directory'''
+    '''Automatically downloads, configures, and builds YOLO to the yolo/ directory.'''
 
     # Run script to automatically download and setup YOLO
     download()
