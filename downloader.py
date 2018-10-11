@@ -14,6 +14,10 @@ def download():
     # classifier in and procede to download it
     # and install it in that directory.
 
+    # Remove potential old directories
+    shutil.rmtree('darknet')
+    shutil.rmtree('yolo')
+
     print("Beginning download of YOLO tool.")
     subprocess.check_output(['git','clone','https://github.com/pjreddie/darknet'])
     subprocess.check_output(['mv', 'darknet', 'yolo'])
