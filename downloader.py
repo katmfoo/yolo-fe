@@ -6,6 +6,7 @@
 
 import subprocess
 import shutil
+import os
 from configure_gpu import configure_gpu
 
 def download():
@@ -16,8 +17,10 @@ def download():
     # and install it in that directory.
 
     # Remove potential old directories
-    shutil.rmtree('darknet')
-    shutil.rmtree('yolo')
+    if os.path.isdir('darknet'):
+        shutil.rmtree('darknet')
+    if os.path.isdir('yolo'):
+        shutil.rmtree('yolo')
 
     print("Beginning download of YOLO tool.")
     subprocess.check_output(['git','clone','https://github.com/pjreddie/darknet'])
