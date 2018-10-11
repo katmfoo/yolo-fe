@@ -16,3 +16,11 @@ The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will 
 #### yolo-fe setup
 
 The setup subcommand can be ran to automatically download, configure, and install the YOLO system to the yolo/ directory.
+
+## Cloud instance used for testing
+
+This tool was tested using a Google Cloud instance with the following specifications.
+* Region: us-east4
+* Machine type: 1vCPU, 3.75 GB memory
+* GPU: 1 NVIDIA Tesla P4
+* Boot disk: 20GB standard persistent, Ubuntu 16.04 LTS
