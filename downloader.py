@@ -24,4 +24,5 @@ def install():
     # the newly downloaded yolo tool.
     configure_gpu()
     print("Running make command on yolo tool.")
+    subprocess.check_output(['cd', 'yolo'])
     subprocess.check_output(['make'])
