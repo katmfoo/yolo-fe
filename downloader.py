@@ -5,6 +5,7 @@
 # Created by Team Golden Retrievers.
 
 import subprocess
+import shutil
 from configure_gpu import configure_gpu
 
 def download():
