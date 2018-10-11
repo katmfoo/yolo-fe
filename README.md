@@ -15,7 +15,7 @@ The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will 
 
 ### Setup command
 ```
-yolo-fe setup
+yolo-fe setup [--gpu/--cpu] [--cuda-path=/path/to/cuda/]
 ```
 
 The setup subcommand can be ran to automatically download, configure, and install the YOLO system to the yolo/ directory. Run `yolo-fe setup --help` to see all options. `--gpu` or `--cpu` can be appended to setup YOLO in either GPU or CPU mode, GPU mode is default. `--cuda-path /path/to/cuda/` can be used to manually set the system path to CUDA. Default is `/usr/local/cuda-9.0/` which is the resulting location after running the `cuda_gpu_driver_install.sh` GPU driver install script.
