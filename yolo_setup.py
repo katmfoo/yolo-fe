@@ -38,7 +38,7 @@ def configure(**kwargs):
         cuda_path = "/usr/local/cuda-9.0/"
 
     click.echo("Adding CUDA to system PATH variable...")
-    subprocess.check_output('export PATH=' + cuda_path + 'bin\$\{\PATH\:\+\:\$\{\P\A\T\H\}\}', shell=True)
+    os.environ['PATH'] = cuda_path + ":" + os.environ['PATH'];
 
     # Make modifications to Makefile
     with open("yolo/Makefile", "rt") as fin:
