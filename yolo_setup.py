@@ -37,9 +37,6 @@ def configure(**kwargs):
     else:
         cuda_path = "/usr/local/cuda-9.0/"
 
-    click.echo("Adding CUDA to system PATH variable...")
-    os.environ['PATH'] = cuda_path + ":" + os.environ['PATH'];
-
     # Make modifications to Makefile
     with open("yolo/Makefile", "rt") as fin:
         with open("yolo/Makefile_new", "wt") as fout:
