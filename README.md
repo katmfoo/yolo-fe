@@ -27,3 +27,7 @@ This tool was tested using a Google Cloud instance with the following specificat
 * Machine type: 1vCPU, 3.75 GB memory
 * GPU: 1 NVIDIA Tesla P4
 * Boot disk: 20GB standard persistent, Ubuntu 16.04 LTS
+
+## Image datasets
+
+The image datasets that we put together can be downloaded [here](https://drive.google.com/open?id=1Ej3BlbHDLrJBH_hG3Mm3xVt2LTrOV4tX).
