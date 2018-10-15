@@ -8,7 +8,8 @@ Command line tool for interfacing with the YOLO system and applying different me
 ## How to install
 1. Run `git clone https://github.com/pricheal/yolo-fe.git`
 2. Inside repository, run `sudo python3 setup.py develop`
-3. Run `yolo-fe` to use command line tool
+3. Ensure CUDA is in system path with `export PATH="/usr/local/cuda-9.0/:$PATH"`
+4. Run `yolo-fe` to use command line tool
 
 ## Usage
 The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will display the various subcommands that can be ran. Running `yolo-fe subcommand --help` will display more information for that particular subcommand.
