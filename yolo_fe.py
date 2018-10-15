@@ -6,8 +6,8 @@ def cli():
     pass
 
 @cli.command()
-@click.option('--gpu/--cpu', default=True)
-@click.option('--cuda-path', default=False)
+@click.option('--gpu/--cpu', default=True, help='Flag to build YOLO to either use the GPU or CPU, GPU if not specified')
+@click.option('--cuda-path', default=False, help='Specify the path to CUDA, default is /usr/local/cuda-9.0/')
 def setup(gpu, cuda_path):
     '''Automatically downloads, configures, and builds YOLO to the yolo/ directory.'''
 
