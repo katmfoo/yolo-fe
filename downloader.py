@@ -25,6 +25,7 @@ def install():
     configure_gpu()
     print("Running make command on yolo tool.")
     subprocess.check_output(['make'])
+    print("Finished installation of yolo.")
 
 if __name__ = '__main__':
     download()
