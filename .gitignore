@@ -2,3 +2,4 @@ __pycache__
 yolo_fe.egg-info
 .DS_Store
 yolo
+.vscode

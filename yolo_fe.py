@@ -1,15 +1,23 @@
 import click
-from downloader import download
+from yolo_setup import download, configure, install
 
 @click.group()
 def cli():
     pass
 
 @cli.command()
-def setup():
-    '''Automatically downloads and sets up YOLO in the current directory'''
+@click.option('--gpu/--cpu', default=True, help='Flag to build YOLO to either use the GPU or CPU, GPU if not specified')
+@click.option('--cuda-path', default=False, help='Specify the path to CUDA, default is /usr/local/cuda-9.0/')
+def setup(gpu, cuda_path):
+    '''Automatically downloads, configures, and builds YOLO to the yolo/ directory.'''
 
-    # Run script to automatically download and setup YOLO
     download()
+
+    if cuda_path:
+        configure(enable_gpu=gpu, cuda_path=cuda_path)
+    else:
+        configure(enable_gpu=gpu)
+
+    install()
 
     print('YOLO has been setup successfully')
