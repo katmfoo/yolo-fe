@@ -31,4 +31,4 @@ This tool was tested using a Google Cloud instance with the following specificat
 
 ## Image datasets
 
-The image datasets that we put together can be downloaded [here](https://drive.google.com/open?id=1BThEnsEen-00b4gzXFcDbzvtEhD8aVnF).
+The image datasets that we put together can be downloaded [here](https://drive.google.com/open?id=1-5pahFrP3WJiJMs74La7lVk0ay44_bnq).
