@@ -1,11 +1,16 @@
 import os
 
 def listFiles():
-    numFiles = 0
-    for f in os.listdir("practice"):
-        numFiles += 1
-    print(os.listdir("practice"))
-    print(str(numFiles) + " total files.")
+    totalFiles = 0
+    subsets = os.listdir('dirname')
+    for sets in subset: 
+        numFiles = 0
+        if os.isdir(sets):
+            images = os.listdir(sets)
+            for i in images:
+                numFiles += 1
+            print("Dataset " + sets + " contains " + str(numFiles) + "images.")
+            totalFiles = numFiles
 
 if __name__ == "__main__":
 
