@@ -1,5 +1,6 @@
 import click
 from yolo_setup import download, configure, install
+from listFiles import listFiles
 
 @click.group()
 def cli():
@@ -21,3 +22,19 @@ def setup(gpu, cuda_path):
     install()
 
     print('YOLO has been setup successfully')
+
+@cli.command()
+def datasets():
+    '''Lets you view the datasets within the datasets/ directory.'''
+    data = listFiles()
+
+    if data == False:
+        print('The datasets/ directory does not exist')
+    else:
+        if not data:
+            print('There are no datasets within the datasets/ directory')
+        else:
+            num = 1
+            for dataset in data:
+                print(str(num) + ". Dataset '" + dataset[0] + "' has " + str(dataset[1]) + " images and " + str(dataset[2]) + " bounds")
+                num = num + 1
