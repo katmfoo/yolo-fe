@@ -21,6 +21,13 @@ yolo-fe setup [--gpu/--cpu] [--cuda-path=/path/to/cuda/]
 
 The setup subcommand can be ran to automatically download, configure, and install the YOLO system to the yolo/ directory. Run `yolo-fe setup --help` to see all options. `--gpu` or `--cpu` can be appended to setup YOLO in either GPU or CPU mode, GPU mode is default. `--cuda-path /path/to/cuda/` can be used to manually set the system path to CUDA. Default is `/usr/local/cuda-9.0/` which is the resulting location after running the `cuda_gpu_driver_install.sh` GPU driver install script.
 
+### Datasets command
+```
+yolo-fe datasets
+```
+
+The datasets subcommand be ran to view the datasets within the datasets/ directory. After setting up yolo with the setup subcommand, a datasets/ directory should be created in the root of the repository and loaded with the desired image datasets. An image dataset is simply a folder that contains image files and a corresponding bounds text file for each image with the same name, excluding the file extension.
+
 ## Cloud instance used for testing
 
 This tool was tested using a Google Cloud instance with the following specifications.
