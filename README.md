@@ -26,7 +26,7 @@ The setup subcommand can be ran to automatically download, configure, and instal
 yolo-fe datasets
 ```
 
-The datasets subcommand be ran to view the datasets within the datasets/ directory. After setting up yolo with the setup subcommand, a datasets/ directory should be created in the root of the repository and loaded with the desired image datasets. An image dataset is simply a folder that contains image files and a corresponding bounds text file for each image with the same name, excluding the file extension.
+The datasets subcommand can be ran to view the datasets within the datasets/ directory. After setting up yolo with the setup subcommand, a datasets/ directory should be created in the root of the repository and loaded with the desired image datasets. An image dataset is simply a folder that contains image files and a corresponding bounds text file for each image with the same name, excluding the file extension. The datasets/ directory and its contents are created manually by the user, and are required to perform the remaining subcommands.
 
 ## Cloud instance used for testing
 
