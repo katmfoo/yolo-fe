@@ -19,8 +19,9 @@ def edgeDetection(dataset):
     os.chdir(newDataset)
     images_2 = os.listdir(os.getcwd())
     for img_2 in images_2:
-        if(os.path.isfile(img_2)):
-            runCV(img_2)
+        if(not img_2.endswith(".txt")):
+            if(os.path.isfile(img_2)):
+                runCV(img_2)
 
     print("Completed edge detection on " + dataset + " dataset.")
     print("Edge detected images located in " + newDataset + " directory.")
@@ -31,4 +32,4 @@ def runCV(image):
 
 if __name__ == "__main__":
 
-    edgeDetection('people')
+    edgeDetection('people_dataset')
