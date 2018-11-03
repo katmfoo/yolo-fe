@@ -5,8 +5,7 @@ Command line tool for interfacing with the YOLO system and applying different me
 This tool requires Python3 and the Python `setuptools` module which can be found [here](https://pypi.org/project/setuptools/).
 1. Run `git clone https://github.com/pricheal/yolo-fe.git`
 2. Inside repository, run `sudo python3 setup.py develop`
-3. If you plan to utilize the GPU, ensure that CUDA is in the system path. This can be done temporarily for the current
-3. Ensure CUDA is in system path with `export PATH="/usr/local/cuda-9.0/bin/:$PATH"` (only needed for GPU)
+3. If you plan to utilize the GPU, use the `ubuntu_cuda_gpu_driver_install.sh` file to download and and install the proper drivers for the GPU and CUDA. After that is complete, ensure that CUDA is in the system path. This can be done temporarily for the current terminal session with `export PATH="/usr/local/cuda-9.0/bin/:$PATH"` (change PATH value if needed).
 4. Run `yolo-fe` to use command line tool
 
 ## Usage
