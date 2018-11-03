@@ -31,7 +31,7 @@ def edgeDetection(dataset):
 def runCV(image):
     img = cv.imread(image,0)
     edges = cv.Canny(img,100,200)
-    cv.imwrite(image,edges)
+    cv.imwrite('edge_detected_'+image+'.jpg',edges)
 
 def convertToPNG(tempImage):
     img = tempImageb #image
