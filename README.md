@@ -11,11 +11,16 @@ This tool requires Python3 and the Python `setuptools` module which can be found
 ## Usage
 The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will display the various subcommands that can be ran. Running `yolo-fe subcommand --help` will display more information for that particular subcommand.
 
+### Initial setup
+Before any other commands that utilize YOLO can be ran, YOLO must be downloaded, installed, and built. To do this, run `yolo-fe setup`. By default, this will build YOLO to use the computers GPU. If you want to build YOLO to use the computers CPU, run `yolo-fe setup --cpu` instead. The tool assumes the CUDA path is `/usr/local/cuda-9.0/` but this can also be overwritten with the `--cuda-path` option.
+
+## Commands
+
 ### Setup command
 ```
 yolo-fe setup [--gpu/--cpu] [--cuda-path=/path/to/cuda/]
 ```
-**WARNING**: CUDA must be added to the system path for the setup subcommand to work with the --gpu option (which is the default option). It can be added with `export PATH="/usr/local/cuda-9.0/bin/:$PATH"`.
+**WARNING**: CUDA must be added to the system path for the setup subcommand to work with the --gpu option (which is the default option). This can be done temporarily for the current terminal session with `export PATH="/usr/local/cuda-9.0/bin/:$PATH"` (change PATH value if needed).
 
 The setup subcommand can be ran to automatically download, configure, and install the YOLO system to the yolo/ directory. Run `yolo-fe setup --help` to see all options. `--gpu` or `--cpu` can be appended to setup YOLO in either GPU or CPU mode, GPU mode is default. `--cuda-path /path/to/cuda/` can be used to manually set the system path to CUDA. Default is `/usr/local/cuda-9.0/` which is the resulting location after running the `cuda_gpu_driver_install.sh` GPU driver install script.
 
