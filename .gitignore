@@ -4,3 +4,4 @@ yolo_fe.egg-info
 yolo
 .vscode
 datasets/*
+!datasets/test-dataset
