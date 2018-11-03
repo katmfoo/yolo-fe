@@ -23,6 +23,7 @@ def edgeDetection(dataset):
         if(not img_2.endswith(".txt")):
             if(os.path.isfile(img_2)):
                 runCV(img_2)
+                img_2 = makeTransparent(img_2)
 
 
     print("Completed edge detection on " + dataset + " dataset.")
@@ -33,8 +34,8 @@ def runCV(image):
     edges = cv.Canny(img,100,200)
     cv.imwrite('edge_detected_'+image+'.jpg',edges)
 
-def convertToPNG(tempImage):
-    img = tempImageb #image
+def makeTransparent(tempImage):
+    img = tempImage #image
     img = img.convert("RGBA")
     datas = img.getdata()
     newData = []
