@@ -18,12 +18,17 @@ def edgeDetection(dataset):
 
     print("Beginning edge detection on images in new directory.")
     os.chdir(newDataset)
-    images_2 = os.listdir(os.getcwd())
-    for img_2 in images_2:
+    images = os.listdir(os.getcwd())
+    for img_2 in images:
         if(not img_2.endswith(".txt")):
             if(os.path.isfile(img_2)):
                 runCV(img_2)
-                img_2 = makeTransparent(img_2)
+
+    print("Making edge detected images transparent")
+    images = os.listdir(os.getcwd())
+    for img_3 in images:
+        if("edge_detected" in img_3):
+            makeTransparent(img_3)
 
 
     print("Completed edge detection on " + dataset + " dataset.")
@@ -35,7 +40,7 @@ def runCV(image):
     cv.imwrite('edge_detected_'+image+'.jpg',edges)
 
 def makeTransparent(tempImage):
-    img = tempImage #image
+    img = Image.open(tempImage) #image
     img = img.convert("RGBA")
     datas = img.getdata()
     newData = []
@@ -45,10 +50,8 @@ def makeTransparent(tempImage):
         else:
             newData.append(item)
     img.putdata(newData)
+    img.save("Transparent_"+tempImage,"PNG")
     #converted Image name
-    print('Done')
-    return img
-
 
 if __name__ == "__main__":
 
