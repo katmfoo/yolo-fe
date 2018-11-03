@@ -44,7 +44,7 @@ def datasets():
 
 @cli.command()
 @click.argument('dataset')
-@click.option('--train-percentage', type=int, default=DEFAULT_TRAIN_PERCENTAGE, help='Specify the percentage of dataset to use for training, default 70%. Remaining percentage is used for testing.')
+@click.option('--train-percentage', type=int, default=DEFAULT_TRAIN_PERCENTAGE, help='Specify the percentage of dataset to use for training, default first 70% of each (automatically) sorted classification group. Remaining percentage should be used for testing.')
 def train(dataset, train_percentage):
     '''Lets you train an image classifier with the given image dataset.'''
 
