@@ -27,7 +27,8 @@ Within each folder for the object classes (cats, dogs) should be all of the imag
 ```
 for each bound in the image where the class number is `line number - 1` (line number is the line number of where that object appears in the .names file, so the first line in the .names file would have a class number of 0), and center x, center y, width, and height are all a decimal number 0 to 1 that is relative to the image's width and height.
 
-Once the dataset is correctly loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
+##### Checking to see if it was loaded correctly
+Once the dataset is loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
 
 ## Commands
 
