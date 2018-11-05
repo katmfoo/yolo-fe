@@ -41,7 +41,7 @@ This tool was tested using a Google Cloud instance with the following specificat
 
 ## Image datasets
 
-The image datasets that we put together can be downloaded [here](https://drive.google.com/open?id=1U4KBIFIG5y46M9q6upXyQqotUXqI7pvL).
+The image datasets that we put together can be downloaded [here](https://drive.google.com/open?id=12cjfMWbfBQiqPivfFiDcnOywIG7jTALq).
 
 ### Downloading image datasets onto Ubuntu
 * Download the google drive file with this python script: https://stackoverflow.com/a/39225039
