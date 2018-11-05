@@ -30,23 +30,6 @@ for each bound in the image where the class number is `line number - 1` (line nu
 ##### Checking to see if it was loaded correctly
 Once the dataset is loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
 
-## Commands
-
-### Setup command
-```
-yolo-fe setup [--gpu/--cpu] [--cuda-path=/path/to/cuda/]
-```
-**WARNING**: CUDA must be added to the system path for the setup subcommand to work with the --gpu option (which is the default option). This can be done temporarily for the current terminal session with `export PATH="/usr/local/cuda-9.0/bin/:$PATH"` (change PATH value if needed).
-
-The setup subcommand can be ran to automatically download, configure, and install the YOLO system to the yolo/ directory. Run `yolo-fe setup --help` to see all options. `--gpu` or `--cpu` can be appended to setup YOLO in either GPU or CPU mode, GPU mode is default. `--cuda-path /path/to/cuda/` can be used to manually set the system path to CUDA. Default is `/usr/local/cuda-9.0/` which is the resulting location after running the `cuda_gpu_driver_install.sh` GPU driver install script.
-
-### Datasets command
-```
-yolo-fe datasets
-```
-
-The datasets subcommand can be ran to view the datasets within the datasets/ directory. After setting up yolo with the setup subcommand, a datasets/ directory should be created in the root of the repository and loaded with the desired image datasets. An image dataset is simply a folder that contains image files and a corresponding bounds text file for each image with the same name, excluding the file extension. The datasets/ directory and its contents are created manually by the user, and are required to perform the remaining subcommands.
-
 ## Cloud instance used for testing
 
 This tool was tested using a Google Cloud instance with the following specifications.
