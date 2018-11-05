@@ -21,11 +21,11 @@ The next step that needs to be done is to load a dataset into the datasets/ dire
 A dataset is simply a folder that sits within the datasets/ directory. The name of the dataset is the name of the folder. A dataset folder should contain a .names file that is named the same as the dataset (so if the dataset is named dataset1, the .names file should be dataset1.names), and a folder for each object class within the dataset (so if the dataset contained images of cats and dogs, the .names file should contain one line with the string dog and another with the string cat, and there should be a dog folder and a cat folder within the dataset folder). The point of separating the images of different object classes into folders is so the tool can select an even distribution of images from each object class when training and testing.
 
 ##### What should be in the folder for each object class
-Within each folder for the object classes (cats, dogs) should be all of the image files with a corresponding bounds text file that is named the same as the image. Each bounds file should have a line with the following format
+Within each folder for the object classes (cats, dogs) should be all of the image files with a corresponding bounds text file that is named the same as the image. Each bounds file should have a line with the following format for each boundary within the image.
 ```
 <class number> <center x> <center y> <width> <height>
 ```
-for each bound in the image where the class number is `line number - 1` (line number is the line number of where that object appears in the .names file, so the first line in the .names file would have a class number of 0), and center x, center y, width, and height are all a decimal number 0 to 1 that is relative to the image's width and height.
+Class number is `line number - 1` (line number is the line number of where that object appears in the .names file, so the first line in the .names file would have a class number of 0), and center x, center y, width, and height are all a decimal number 0 to 1 that is relative to the image's width and height.
 
 ##### Checking to see if it was loaded correctly
 Once the dataset is loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
