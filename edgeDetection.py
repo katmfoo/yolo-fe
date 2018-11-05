@@ -2,11 +2,15 @@ import os
 import shutil
 import cv2 as cv
 from PIL import Image
+import numpy as np
+
+
+
 
 def edgeDetection(dataset):
     print("Beginning edge detection for new dataset.")
     os.chdir('datasets')
-    newDataset = 'edge_detected_'+dataset
+    newDataset = 'edge_detecited_'+dataset
     if( not os.path.isdir(newDataset)):
         os.mkdir(newDataset)
     print("Copying images from old dataset to new dataset")
@@ -39,19 +43,23 @@ def runCV(image):
     edges = cv.Canny(img,100,200)
     cv.imwrite('edge_detected_'+image+'.jpg',edges)
 
-def makeTransparent(tempImage):
-    img = Image.open(tempImage) #image
+def makeTransparent(img_3):
+    
+    img = Image.open(img_3)
+    img.save(img_3+'.png')
     img = img.convert("RGBA")
     datas = img.getdata()
+
     newData = []
     for item in datas:
         if item[0] == 255 and item[1] == 255 and item[2] == 255:
             newData.append((255, 255, 255, 0))
         else:
             newData.append(item)
+
     img.putdata(newData)
-    img.save("Transparent_"+tempImage,"PNG")
-    #converted Image name
+    img.save(img_3+"transparent", "PNG")
+
 
 if __name__ == "__main__":
 
