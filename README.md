@@ -14,22 +14,21 @@ The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will 
 ### Initial setup
 Before any other commands that utilize YOLO can be ran, YOLO must be downloaded, installed, and built. To do this, run `yolo-fe setup`. By default, this will build YOLO to use the computers GPU. If you want to build YOLO to use the computers CPU, run `yolo-fe setup --cpu` instead. The tool assumes the CUDA path is `/usr/local/cuda-9.0/` but this can also be overwritten with the `--cuda-path` option.
 
-## Commands
+### Loading a dataset
+The next step that needs to be done is to load a dataset into the datasets/ directory. The structure of a dataset is described below but can also be seen by looking at the `test-dataset` that already exists within the datasets/ directory.
 
-### Setup command
-```
-yolo-fe setup [--gpu/--cpu] [--cuda-path=/path/to/cuda/]
-```
-**WARNING**: CUDA must be added to the system path for the setup subcommand to work with the --gpu option (which is the default option). This can be done temporarily for the current terminal session with `export PATH="/usr/local/cuda-9.0/bin/:$PATH"` (change PATH value if needed).
+##### What is a dataset
+A dataset is simply a folder that sits within the datasets/ directory. The name of the dataset is the name of the folder. A dataset folder should contain a .names file that is named the same as the dataset (so if the dataset is named dataset1, the .names file should be dataset1.names), and a folder for each object class within the dataset (so if the dataset contained images of cats and dogs, the .names file should contain one line with the string dog and another with the string cat, and there should be a dog folder and a cat folder within the dataset folder). The point of separating the images of different object classes into folders is so the tool can select an even distribution of images from each object class when training and testing.
 
-The setup subcommand can be ran to automatically download, configure, and install the YOLO system to the yolo/ directory. Run `yolo-fe setup --help` to see all options. `--gpu` or `--cpu` can be appended to setup YOLO in either GPU or CPU mode, GPU mode is default. `--cuda-path /path/to/cuda/` can be used to manually set the system path to CUDA. Default is `/usr/local/cuda-9.0/` which is the resulting location after running the `cuda_gpu_driver_install.sh` GPU driver install script.
-
-### Datasets command
+##### What should be in the folder for each object class
+Within each folder for the object classes (cats, dogs) should be all of the image files with a corresponding bounds text file that is named the same as the image. Each bounds file should have a line with the following format for each boundary within the image.
 ```
-yolo-fe datasets
+<class number> <center x> <center y> <width> <height>
 ```
+Class number is `line number - 1` (line number is the line number of where that object appears in the .names file, so the first line in the .names file would have a class number of 0), and center x, center y, width, and height are all a decimal number 0 to 1 that is relative to the image's width and height.
 
-The datasets subcommand can be ran to view the datasets within the datasets/ directory. After setting up yolo with the setup subcommand, a datasets/ directory should be created in the root of the repository and loaded with the desired image datasets. An image dataset is simply a folder that contains image files and a corresponding bounds text file for each image with the same name, excluding the file extension. The datasets/ directory and its contents are created manually by the user, and are required to perform the remaining subcommands.
+##### Checking to see if it was loaded correctly
+Once the dataset is loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
 
 ## Cloud instance used for testing
 
