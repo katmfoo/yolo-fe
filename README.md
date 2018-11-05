@@ -14,6 +14,21 @@ The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will 
 ### Initial setup
 Before any other commands that utilize YOLO can be ran, YOLO must be downloaded, installed, and built. To do this, run `yolo-fe setup`. By default, this will build YOLO to use the computers GPU. If you want to build YOLO to use the computers CPU, run `yolo-fe setup --cpu` instead. The tool assumes the CUDA path is `/usr/local/cuda-9.0/` but this can also be overwritten with the `--cuda-path` option.
 
+### Loading a dataset
+The next step that needs to be done is to load a dataset into the datasets/ directory. The structure of a dataset is described below but can also be seen by looking at the `test-dataset` that already exists within the datasets/ directory.
+
+##### What is a dataset
+A dataset is simply a folder that sets within the datasets/ directory. The name of the dataset is the name of the folder. A dataset folder should contain a .names file that is named the same as the dataset (so if the dataset is named dataset1, the .names file should be dataset1.names), and a folder for each object class within the dataset (so if the dataset contained images of cats and dogs, there should be a cats folder and a dogs folder within the dataset folder).
+
+##### What should be in the folder for each object class
+Within each folder for the object classes (cats, dogs) should be all of the image files with a corresponding bounds text file that is named the same as the image. Each bounds file should have a line with the following format
+```
+<class number> <center x> <center y> <width> <height>
+```
+for each bound in the image where the class number is `line number - 1` (line number is the line number of where that object appears in the .names file, so the first line in the .names file would have a class number of 0), and center x, center y, width, and height are all a decimal number 0 to 1 that is relative to the image's width and height.
+
+Once the dataset is correctly loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
+
 ## Commands
 
 ### Setup command
