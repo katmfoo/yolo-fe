@@ -8,6 +8,6 @@ def inverte(imagem):
 
 
 if __name__ == '__main__':
-   im_in = cv2.imread("C:/Users/DaddyEJ/Downloads/yolo-fe-master/yolo-fe-master/datasets/edge_detected_people_dataset/people1.jpg",cv2.IMREAD_GRAYSCALE)
+   im_in = cv2.imread("C:/Users/shapi/yolo-fe/datasets/edge_detecited_people_dataset/edge_detected_people4.jpg", cv2.IMREAD_GRAYSCALE)
    img = inverte(im_in)
   #  cv2.imwrite("inverted_image.jpg",img)
