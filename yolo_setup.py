@@ -5,6 +5,7 @@ import subprocess
 import shutil
 import os
 import click
+import urllib.request
 
 def download():
     """Downloads the YOLO system to the yolo/ directory"""
@@ -57,6 +58,11 @@ def install():
 
     click.echo("Running make command...")
     subprocess.check_output(['make'], cwd='yolo')
+
+def downloadConvolutionalWeights():
+    """Downloads the necessary pre trained convolutional weights that YOLO uses"""
+    click.echo("Downloading pre trained convolutional weight file (this may take a while, ~150MB)")
+    urllib.request.urlretrieve('https://pjreddie.com/media/files/darknet53.conv.74', 'yolo/darknet53.conv.74')
 
 def yoloSetup():
     if os.path.isdir('yolo'):

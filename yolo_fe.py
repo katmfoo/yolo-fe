@@ -12,7 +12,8 @@ def cli():
 @cli.command()
 @click.option('--gpu/--cpu', default=True, help='Flag to build YOLO to either use the GPU or CPU, GPU if not specified')
 @click.option('--cuda-path', default=False, help='Specify the path to CUDA, default is /usr/local/cuda-9.0/')
-def setup(gpu, cuda_path):
+@click.option('--omit-weight-file', is_flag=True, default=False, help='Flag to omit downloading the pretrained convolutional weight file')
+def setup(gpu, cuda_path, omit_weight_file):
     '''Automatically download, configure, and build YOLO to the yolo/ directory.'''
 
     yolo_setup.download()
@@ -23,6 +24,9 @@ def setup(gpu, cuda_path):
         yolo_setup.configure(enable_gpu=gpu)
 
     yolo_setup.install()
+
+    if not omit_weight_file:
+        yolo_setup.downloadConvolutionalWeights()
 
     print('YOLO has been setup successfully')
 
