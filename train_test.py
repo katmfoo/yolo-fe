@@ -30,6 +30,33 @@ def generateTrainFile(dataset, train_percentage):
                 else:
                     the_file.write(line)
                 i = i + 1
+        return current_path + "/yolo/train.txt"
 
 def generateTestFile(dataset, test_percentage):
-    print('test file')
+    
+    dataset_obj = dataset_functions.getDataset(dataset)
+    class_files = []
+    current_path = os.path.dirname(os.path.realpath(__file__))
+
+    for object_class in dataset_obj:
+        all_class_files = []
+        all_class_files.extend(glob.glob('datasets/' + dataset + '/' + object_class[0] + "/*.jpg"))
+        all_class_files.extend(glob.glob('datasets/' + dataset + '/' + object_class[0] + "/*.jpeg"))
+        all_class_files.extend(glob.glob('datasets/' + dataset + '/' + object_class[0] + "/*.png"))
+
+        all_class_files.sort()
+
+        first_file_num = math.floor(len(all_class_files) * ((100 - test_percentage) / 100))
+
+        for x in range(first_file_num, len(all_class_files)):
+            class_files.append(current_path + "/" + all_class_files[x])
+
+        with open('yolo/test.txt', 'w') as the_file:
+            i = 0
+            for line in class_files:
+                if i < len(class_files) - 1:
+                    the_file.write(line + '\n')
+                else:
+                    the_file.write(line)
+                i = i + 1
+        return current_path + "/yolo/test.txt"

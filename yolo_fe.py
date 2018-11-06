@@ -70,4 +70,8 @@ def train(dataset, train_percentage):
     if not dataset_obj:
         print("Dataset '" + dataset + "' does not exist or is not configured properly")
     else:
-        train_test.generateTrainFile(dataset, train_percentage)
+        train_file_path = train_test.generateTrainFile(dataset, train_percentage)
+        test_file_path = train_test.generateTestFile(dataset, 100 - train_percentage)
+
+        print(train_file_path)
+        print(test_file_path)
