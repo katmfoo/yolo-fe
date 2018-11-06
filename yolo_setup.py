@@ -57,3 +57,9 @@ def install():
 
     click.echo("Running make command...")
     subprocess.check_output(['make'], cwd='yolo')
+
+def yoloSetup():
+    if os.path.isdir('yolo'):
+        return True
+    else:
+        return False

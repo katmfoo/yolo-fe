@@ -1,7 +1,7 @@
 import click
-from yolo_setup import download, configure, install
+import yolo_setup
 import dataset_functions
-import os
+import train_test
 
 DEFAULT_TRAIN_PERCENTAGE = 70
 
@@ -15,14 +15,14 @@ def cli():
 def setup(gpu, cuda_path):
     '''Automatically download, configure, and build YOLO to the yolo/ directory.'''
 
-    download()
+    yolo_setup.download()
 
     if cuda_path:
-        configure(enable_gpu=gpu, cuda_path=cuda_path)
+        yolo_setup.configure(enable_gpu=gpu, cuda_path=cuda_path)
     else:
-        configure(enable_gpu=gpu)
+        yolo_setup.configure(enable_gpu=gpu)
 
-    install()
+    yolo_setup.install()
 
     print('YOLO has been setup successfully')
 
@@ -32,11 +32,13 @@ def datasets():
 
     if not dataset_functions.datasetDirExists():
         print('The datasets/ directory does not exist')
+        return
     else:
         datasets = dataset_functions.getDatasets()
 
         if not datasets:
             print('There are no datasets within the datasets/ directory')
+            return
         else:
             for dataset in datasets:
                 print(dataset)
@@ -50,6 +52,9 @@ def dataset(dataset):
 
     if not dataset_obj:
         print("Dataset '" + dataset + "' does not exist or is not configured properly")
+        return
+    elif not yolo_setup.yoloSetup():
+        print("YOLO has not been setup correctly yet, run the setup command to do so")
     else:
         for class_folder in dataset_obj:
             print("Object class folder '" + class_folder[0] + "' contains " + str(class_folder[1]) + " images and " + str(class_folder[2]) + " bounds files.")
@@ -60,6 +65,9 @@ def dataset(dataset):
 def train(dataset, train_percentage):
     '''Train an image classifier with the given image dataset.'''
 
-    # if not os.path.isdir('datasets/' + dataset):
-    #     print("Dataset '" + dataset + "' does not exist")
-    #     return
+    dataset_obj = dataset_functions.getDataset(dataset)
+
+    if not dataset_obj:
+        print("Dataset '" + dataset + "' does not exist or is not configured properly")
+    else:
+        train_test.generateTrainFile(dataset, train_percentage)
