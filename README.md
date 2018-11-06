@@ -12,7 +12,7 @@ This tool requires Python3 and the Python `setuptools` module which can be found
 The command line tool is accessed with `yolo-fe`. Running `yolo-fe --help` will display the various subcommands that can be ran. Running `yolo-fe subcommand --help` will display more information for that particular subcommand.
 
 ### 1. Initial setup
-Before any other commands that utilize YOLO can be ran, YOLO must be downloaded, installed, and built. To do this, run `yolo-fe setup`. By default, this will build YOLO to use the computers GPU. If you want to build YOLO to use the computers CPU, run `yolo-fe setup --cpu` instead. The tool assumes the CUDA path is `/usr/local/cuda-9.0/` but this can also be overwritten with the `--cuda-path` option.
+Before any other commands that utilize YOLO can be ran, YOLO must be downloaded, installed, and built. To do this, run `yolo-fe setup`. By default, this will build YOLO to use the computers GPU. If you want to build YOLO to use the computers CPU, run `yolo-fe setup --cpu` instead. The tool assumes the CUDA path is `/usr/local/cuda-9.0/` but this can also be overwritten with the `--cuda-path` option. Running the setup command will also automatically download the pretrained convolutional weight file, but this can be ommited with the `--omit-weight-file` flag.
 
 ### 2. Loading a dataset
 The next step that needs to be done is to load a dataset into the datasets/ directory. The structure of a dataset is described below but can also be seen by looking at the `test-dataset` that already exists within the datasets/ directory.
