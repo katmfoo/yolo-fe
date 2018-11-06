@@ -3,13 +3,32 @@ import glob
 import math
 import dataset_functions
 
+def generateDataFile(dataset, train_percentage):
+    train_file_path = generateTrainFile(dataset, train_percentage)
+    test_file_path = generateTestFile(dataset, 100 - train_percentage)
+
+    names_file_path = os.path.dirname(os.path.realpath(__file__)) + "/datasets/" + dataset + "/" + dataset + ".names"
+
+    num_classes = 0
+    for line in open(names_file_path,"r").readlines():
+        if line != "":
+            num_classes = num_classes + 1
+    
+    data_file = open('yolo/yolo-fe.data', 'w')
+    data_file.write('classes = ' + str(num_classes) + "\n")
+    data_file.write('train = ' + train_file_path + "\n")
+    data_file.write('valid = ' + test_file_path + "\n") 
+    data_file.write('names = ' + names_file_path + "\n")
+    data_file.write('backup = backup')
+    data_file.close()
+
+    return os.path.dirname(os.path.realpath(__file__)) + "/yolo/yolo-fe.data"
+
 def generateTrainFile(dataset, train_percentage):
 
     dataset_obj = dataset_functions.getDataset(dataset)
     class_files = []
     current_path = os.path.dirname(os.path.realpath(__file__))
-
-    print(dataset_obj)
 
     for object_class in dataset_obj:
         all_class_files = []
