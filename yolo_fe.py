@@ -1,4 +1,5 @@
 import click
+import subprocess
 import yolo_setup
 import dataset_functions
 import train_test
@@ -57,8 +58,6 @@ def dataset(dataset):
     if not dataset_obj:
         print("Dataset '" + dataset + "' does not exist or is not configured properly")
         return
-    elif not yolo_setup.yoloSetup():
-        print("YOLO has not been setup correctly yet, run the setup command to do so")
     else:
         for class_folder in dataset_obj:
             print("Object class folder '" + class_folder[0] + "' contains " + str(class_folder[1]) + " images and " + str(class_folder[2]) + " bounds files.")
@@ -66,13 +65,21 @@ def dataset(dataset):
 @cli.command()
 @click.argument('dataset')
 @click.option('--train-percentage', type=int, default=DEFAULT_TRAIN_PERCENTAGE, help='Specify the percentage of dataset to use for training, default first 70% of each (automatically) sorted classification group. Remaining percentage should be used for testing.')
-def train(dataset, train_percentage):
+@click.option('--config-file', default='cfg/yolov3.cfg', help='Specify the path to the YOLO config file to use (relative to YOLO directory), default is the standard yolov3.cfg.')
+def train(dataset, train_percentage, config_file):
     '''Train an image classifier with the given image dataset.'''
 
     dataset_obj = dataset_functions.getDataset(dataset)
 
     if not dataset_obj:
         print("Dataset '" + dataset + "' does not exist or is not configured properly")
+        return
+    elif not yolo_setup.yoloSetup():
+        print("YOLO has not been setup correctly yet, run the setup command to do so")
+        return
+    elif not yolo_setup.convolutionalWeightFileDownloaded():
+        print("Pretrained convolutional weight file is missing, rerun the setup subcommand to download")
     else:
         data_file_location = train_test.generateDataFile(dataset, train_percentage)
-        print(data_file_location)
+        p = subprocess.Popen(['./darknet', 'detector', 'train', data_file_location, config_file, 'darknet53.conv.74'], cwd='yolo')
+        p.wait()

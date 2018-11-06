@@ -69,3 +69,6 @@ def yoloSetup():
         return True
     else:
         return False
+
+def convolutionalWeightFileDownloaded():
+    return os.path.isfile('yolo/darknet53.conv.74')
