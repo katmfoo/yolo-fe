@@ -45,3 +45,7 @@ The image datasets that we put together can be downloaded [here](https://drive.g
 ### Downloading image datasets onto Ubuntu
 * Download the google drive file with this python script: https://stackoverflow.com/a/39225039
 * Install the unzip tool and unzip the downloaded zip file
+
+### Useful links
+
+https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
