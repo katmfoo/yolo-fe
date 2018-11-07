@@ -47,5 +47,6 @@ The image datasets that we put together can be downloaded [here](https://drive.g
 * Install the unzip tool and unzip the downloaded zip file
 
 ### Useful links
-
-https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+[YOLO](https://pjreddie.com/darknet/yolo/)
+[darknet](https://github.com/pjreddie/darknet)
+[How to train to detect custom objects](https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects)
