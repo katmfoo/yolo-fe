@@ -32,6 +32,7 @@ Once the dataset is loaded, you can run the command `yolo-fe datasets` to see th
 
 ### 3. Training an image classifier
 Now that YOLO is setup correctly and a dataset has been loaded into the correct location, an image classifier can be trained. To do so, run `yolo-fe train DATASET` where DATASET is the name of the dataset you wish to train off of. This will automatically train the image classifier with an even percentage of images from each class folder within the dataset. The default percentage is 70%, but this can be overridden with the `--train-percentage` option which accepts a number 1-100. For training, all of the images in each folder are sorted and then the first X percentage is taken for training. This is to ensure that separate images are used for training and testing, as the test subcommand uses the last X percentage.
+A configuration file for YOLO is automatically generated and used for training, which is based off of a default training file that has some slight modifications based off of the number of classes that are being trained. To see these exact changes, you can look at the `train_test.py` file in the `generateConfigFile()` method.
 
 ## Cloud instance used for testing
 
