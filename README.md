@@ -30,6 +30,9 @@ Class number is `line number - 1` (line number is the line number of where that 
 #### Checking to see if it was loaded correctly
 Once the dataset is loaded, you can run the command `yolo-fe datasets` to see the loaded datasets. If the dataset is not loaded correctly (e.g. the .names file is missing), the dataset will not be listed. If the dataset does appear, then the command `yolo-fe dataset DATASET` can be ran to view more information about that specific dataset.
 
+### 3. Training an image classifier
+Now that YOLO is setup correctly and a dataset has been loaded into the correct location, an image classifier can be trained. To do so, run `yolo-fe train DATASET` where DATASET is the name of the dataset you wish to train off of. This will automatically train the image classifier with an even percentage of images from each class folder within the dataset. The default percentage is 70%, but this can be overridden with the `--train-percentage` option which accepts a number 1-100. For training, all of the images in each folder are sorted and then the first X percentage is taken for training. This is to ensure that separate images are used for training and testing, as the test subcommand uses the last X percentage.
+
 ## Cloud instance used for testing
 
 This tool was tested using a Google Cloud instance with the following specifications.
