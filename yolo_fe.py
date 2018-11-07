@@ -65,7 +65,8 @@ def dataset(dataset):
 @cli.command()
 @click.argument('dataset')
 @click.option('--train-percentage', type=int, default=DEFAULT_TRAIN_PERCENTAGE, help='Specify the percentage of dataset to use for training, default first 70% of each (automatically) sorted classification group. Remaining percentage should be used for testing.')
-def train(dataset, train_percentage):
+@click.option('--config-file', default=False, help='Specify path of custom YOLO configuration file (relative to yolo/ directory) to override the automatically generated file')
+def train(dataset, train_percentage, config_file):
     '''Train an image classifier with the given image dataset.'''
 
     dataset_obj = dataset_functions.getDataset(dataset)
@@ -80,7 +81,9 @@ def train(dataset, train_percentage):
         print("Pretrained convolutional weight file is missing, rerun the setup subcommand to download")
     else:
         data_file_location = train_test.generateDataFile(dataset, train_percentage)
-        config_file_location = train_test.generateConfigFile(dataset)
+
+        if not config_file:
+            config_file = train_test.generateConfigFile(dataset)
 
         p = subprocess.Popen(['./darknet', 'detector', 'train', data_file_location, config_file_location, 'darknet53.conv.74'], cwd='yolo')
         p.wait()
