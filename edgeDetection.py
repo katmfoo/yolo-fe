@@ -41,7 +41,8 @@ def edgeDetection(dataset):
 def runCV(image):
     img = cv.imread(image,0)
     edges = cv.Canny(img,100,200)
-    cv.imwrite('edge_detected_'+image+'.jpg',edges)
+    invert_edges = cv.bitwise_not(edges)
+    cv.imwrite('edge_detected_' + image + '.jpg', invert_edges)
 
 def makeTransparent(img_3):
     
