@@ -17,6 +17,7 @@ def generateConfigFile(dataset):
     data_string = data_string.replace('subdivisions=16', 'subdivisions=32')
     data_string = data_string.replace('classes=80', new_classes_string)
     data_string = data_string.replace('filters=255', new_filters_string)
+    data_string = data_string.replace('random=1', 'random=0')
 
     data_file = open('yolo/yolo-fe.cfg', 'w')
     data_file.write(data_string)
