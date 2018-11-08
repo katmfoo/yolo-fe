@@ -37,8 +37,22 @@ def configure(**kwargs):
         cuda_path = kwargs['cuda_path']
     else:
         cuda_path = "/usr/local/cuda-9.0/"
+    
+    # Make modifications to YOLO source code
+    #     * set save weight interval to 500 instead of 10,000
+    with open("yolo/examples/detector.c", "rt") as fin:
+        with open("yolo/examples/detector_new.c", "wt") as fout:
+            for line in fin:
+                new_line = new_line.replace('i%10000==0', 'i%500==0')
+                fout.write(new_line)
+
+    os.remove('yolo/examples/detector.c')
+    os.rename('yolo/examples/detector_new.c', 'yolo/examples/detector.c')
+
 
     # Make modifications to Makefile
+    #     * enable GPU if necessary
+    #     * Set CUDA path
     with open("yolo/Makefile", "rt") as fin:
         with open("yolo/Makefile_new", "wt") as fout:
             for line in fin:
