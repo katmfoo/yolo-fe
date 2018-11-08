@@ -85,5 +85,5 @@ def train(dataset, train_percentage, config_file):
         if not config_file:
             config_file = train_test.generateConfigFile(dataset)
 
-        p = subprocess.Popen(['./darknet', 'detector', 'train', data_file_location, config_file_location, 'darknet53.conv.74'], cwd='yolo')
+        p = subprocess.Popen(['./darknet', 'detector', 'train', data_file_location, config_file, 'darknet53.conv.74'], cwd='yolo')
         p.wait()
