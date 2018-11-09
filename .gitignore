@@ -5,3 +5,5 @@ yolo
 .vscode
 datasets/*
 !datasets/test-dataset
+temp_edges.png
+temp_transparent.png
