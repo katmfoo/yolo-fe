@@ -3,6 +3,7 @@ import subprocess
 import yolo_setup
 import dataset_functions
 import train_test
+import edge_detection
 
 DEFAULT_TRAIN_PERCENTAGE = 70
 
@@ -87,3 +88,22 @@ def train(dataset, train_percentage, config_file):
 
         p = subprocess.Popen(['./darknet', 'detector', 'train', data_file_location, config_file, 'darknet53.conv.74'], cwd='yolo')
         p.wait()
+
+@cli.command()
+@click.argument('dataset')
+@click.argument('feature-extraction-method')
+def apply_feature_extraction(dataset, feature_extraction_method):
+    """Apply a method of feature extraction to the given image dataset, possible values are 'ed'."""
+    
+    dataset_obj = dataset_functions.getDataset(dataset)
+
+    if not dataset_obj:
+        print("Dataset '" + dataset + "' does not exist or is not configured properly")
+        return
+    elif feature_extraction_method.lower() not in ['ed']:
+        print("Unknown method of feature extraction. Possible values are 'ed'.")
+        return
+    else:
+        if feature_extraction_method.lower() == 'ed':
+            edge_detection.edgeDetection(dataset)
+            print("Edge detection applied to new dataset '" + dataset + "-ed' successfully")
