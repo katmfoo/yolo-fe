@@ -1,6 +1,6 @@
 __pycache__
 .DS_Store
-yolo_fe.egg-info
+yolo_fe.egg-info/
 yolo
 .vscode
 datasets/*
