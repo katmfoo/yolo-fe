@@ -4,5 +4,4 @@ yolo_fe.egg-info/PKG-INFO
 yolo_fe.egg-info/SOURCES.txt
 yolo_fe.egg-info/dependency_links.txt
 yolo_fe.egg-info/entry_points.txt
-yolo_fe.egg-info/requires.txt
 yolo_fe.egg-info/top_level.txt
