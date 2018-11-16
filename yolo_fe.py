@@ -1,3 +1,4 @@
+import os.path
 import click
 import subprocess
 import yolo_setup
@@ -71,10 +72,6 @@ def dataset(dataset):
 def train(dataset, train_percentage, config_file, max_iterations):
     '''Train an image classifier with the given image dataset.'''
 
-    print(max_iterations)
-
-    return
-
     dataset_obj = dataset_functions.getDataset(dataset)
 
     if not dataset_obj:
@@ -90,11 +87,38 @@ def train(dataset, train_percentage, config_file, max_iterations):
 
         if not config_file:
             if max_iterations:
-                config_file = train_test.generateConfigFile(dataset, max_iterations)
+                config_file = train_test.generateConfigFile(dataset, True, max_iterations)
             else:
-                config_file = train_test.generateConfigFile(dataset)
+                config_file = train_test.generateConfigFile(dataset, True)
 
         p = subprocess.Popen(['./darknet', 'detector', 'train', data_file_location, config_file, 'darknet53.conv.74'], cwd='yolo')
+        p.wait()
+
+@cli.command()
+@click.argument('image-classifier')
+@click.argument('dataset')
+@click.option('--test-percentage', type=int, default=100-DEFAULT_TRAIN_PERCENTAGE, help='Specify the percentage of dataset to use for testing, default last 30% of each (automatically) sorted classification group.')
+@click.option('--config-file', default=False, help='Specify path of custom YOLO configuration file (relative to yolo/ directory) to override the automatically generated file')
+def test(image_classifier, dataset, test_percentage, config_file):
+    '''Test an image classifier on the given image dataset.'''
+
+    dataset_obj = dataset_functions.getDataset(dataset)
+
+    if not dataset_obj:
+        print("Dataset '" + dataset + "' does not exist or is not configured properly")
+        return
+    elif not yolo_setup.yoloSetup():
+        print("YOLO has not been setup correctly yet, run the setup command to do so")
+        return
+    elif not os.path.isfile('yolo/' + image_classifier) :
+        print("Could not find image classifier. Ensure file path is relative to the yolo/ directory.")
+    else:
+        data_file_location = train_test.generateDataFile(dataset, 100 - test_percentage)
+
+        if not config_file:
+            config_file = train_test.generateConfigFile(dataset, False)
+
+        p = subprocess.Popen(['./darknet', 'detector', 'recall', data_file_location, config_file, image_classifier], cwd='yolo')
         p.wait()
 
 @cli.command()

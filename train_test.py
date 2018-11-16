@@ -3,7 +3,7 @@ import glob
 import math
 import dataset_functions
 
-def generateConfigFile(dataset, max_iterations=False):
+def generateConfigFile(dataset, training, max_iterations=False):
 
     names_file_path = os.path.dirname(os.path.realpath(__file__)) + "/datasets/" + dataset + "/" + dataset + ".names"
     num_classes = getNumClasses(names_file_path)
