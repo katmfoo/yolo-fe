@@ -44,6 +44,8 @@ def configure(**kwargs):
         with open("yolo/examples/detector_new.c", "wt") as fout:
             for line in fin:
                 new_line = line.replace('i%10000==0', 'i%500==0')
+                new_line = new_line.replace('data/coco_val_5k.list', 'test.txt')
+                new_line = new_line.replace('l.w*l.h*l.n', 'nboxes')
                 fout.write(new_line)
 
     os.remove('yolo/examples/detector.c')
