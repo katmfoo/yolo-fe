@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        yolo-fe=yolo_fe:cli
+    

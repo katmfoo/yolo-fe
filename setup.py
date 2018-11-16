@@ -5,7 +5,8 @@ setup(
     version='1.0',
     py_modules=['yolo-fe'],
     install_requires=[
-        'click'
+        'click',
+        'opencv-python'
     ],
     entry_points='''
         [console_scripts]
