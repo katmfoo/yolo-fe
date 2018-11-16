@@ -35,6 +35,8 @@ Now that YOLO is setup correctly and a dataset has been loaded into the correct 
 
 A configuration file for YOLO is automatically generated and used for training, which is based off of a default training file that has some slight modifications based off of the number of classes that are being trained. To see these exact changes, you can look at the `train_test.py` file in the `generateConfigFile()` method.
 
+By default, the training will stop after `2000 * <# of classes>` iterations, but this can be overridden with the `--max-iterations` option.
+
 ### 4. Applying feature extraction to a dataset
 Now that an image classifier has been trained on an unmodified dataset, you will likely want to train another image classifier on a modified image dataset. To do so, feature extraction has to be applied to a copy of an entire dataset. To do this, use the `apply-feature-extraction` subcommand. The first argument for this subcommand is the dataset to create a copy of, and the second argument is the feature extraction method to use. The current supported methods of feature extraction are 'ed' (edge detection). So to apply edge detection to the test dataset, the command would be `yolo-fe apply-feature-extraction test-dataset ed`. This would create a copy of the test dataset named `test-dataset-ed` that has edge detection applied to each image.
 
