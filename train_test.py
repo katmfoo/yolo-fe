@@ -3,7 +3,8 @@ import glob
 import math
 import dataset_functions
 
-def generateConfigFile(dataset):
+def generateConfigFile(dataset, max_iterations=False):
+
     names_file_path = os.path.dirname(os.path.realpath(__file__)) + "/datasets/" + dataset + "/" + dataset + ".names"
     num_classes = getNumClasses(names_file_path)
     new_classes_string = 'classes=' + str(num_classes)
@@ -18,6 +19,13 @@ def generateConfigFile(dataset):
     data_string = data_string.replace('classes=80', new_classes_string)
     data_string = data_string.replace('filters=255', new_filters_string)
     data_string = data_string.replace('random=1', 'random=0')
+
+    if max_iterations:
+        new_max_batches = 'max_batches = ' + str(max_iterations)
+    else:
+        max_batches = 2000 * num_classes
+        new_max_batches = 'max_batches = ' + str(max_batches)
+    data_string = data_string.replace('max_batches = 500200', new_max_batches)
 
     data_file = open('yolo/yolo-fe.cfg', 'w')
     data_file.write(data_string)
