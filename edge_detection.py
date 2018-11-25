@@ -22,6 +22,10 @@ def edgeDetection(dataset):
                 if file_extension in ['.jpg', '.jpeg', '.png']:
                     applyEdgeDetection(new_dataset_path + '/' + item + '/' + item2)
     
+    old_names_file = new_dataset_path + "/" + dataset + ".names"
+    new_names_file = new_dataset_path + "/" + dataset + "-ed.names"
+    os.rename(old_names_file, new_names_file)
+    
     os.remove('temp_edges.png')
     os.remove('temp_transparent.png')
 
