@@ -125,17 +125,20 @@ def test(image_classifier, dataset, test_percentage, config_file):
 @click.argument('dataset')
 @click.argument('feature-extraction-method')
 def apply_feature_extraction(dataset, feature_extraction_method):
-    """Apply a method of feature extraction to the given image dataset, possible values are 'ed'."""
+    """Apply a method of feature extraction to the given image dataset, possible values are 'edw' & 'edb'."""
     
     dataset_obj = dataset_functions.getDataset(dataset)
 
     if not dataset_obj:
         print("Dataset '" + dataset + "' does not exist or is not configured properly")
         return
-    elif feature_extraction_method.lower() not in ['ed']:
-        print("Unknown method of feature extraction. Possible values are 'ed'.")
+    elif feature_extraction_method.lower() not in ['edw', 'edb']:
+        print("Unknown method of feature extraction. Possible values are 'edw' & 'edb'.")
         return
     else:
-        if feature_extraction_method.lower() == 'ed':
-            edge_detection.edgeDetection(dataset)
-            print("Edge detection applied to new dataset '" + dataset + "-ed' successfully")
+        if feature_extraction_method.lower() == 'edw':
+            edge_detection.edgeDetection(dataset, 'white')
+            print("Edge detection (white border) applied to new dataset '" + dataset + "-edw' successfully")
+        elif feature_extraction_method.lower() == 'edb':
+            edge_detection.edgeDetection(dataset, 'black')
+            print("Edge detection (black border) applied to new dataset '" + dataset + "-edb' successfully")

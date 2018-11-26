@@ -6,7 +6,8 @@ setup(
     py_modules=['yolo-fe'],
     install_requires=[
         'click',
-        'opencv-python'
+        'opencv-python',
+        'Pillow'
     ],
     entry_points='''
         [console_scripts]
